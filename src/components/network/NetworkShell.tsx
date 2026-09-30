@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { MapDock } from "@/components/map/MapDock";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 import { ErrorNote } from "@/components/ui/primitives";
 import { describeError } from "@/lib/api/client";
 import { getWorkspace } from "@/lib/api/workspace";
@@ -74,6 +75,9 @@ export function NetworkShell({
           {role.title}
         </span>
 
+        <div className="ml-auto">
+          <SignOutButton />
+        </div>
       </header>
 
       {/* Tool tabs */}

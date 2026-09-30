@@ -26,6 +26,26 @@ No map API key is required — the default basemap uses OpenStreetMap raster
 tiles, desaturated at runtime. Set `NEXT_PUBLIC_MAP_STYLE_URL` to use a vector
 style instead.
 
+## Authentication
+
+Every page under `/workspace` and `/network/*` requires a login. Accounts are
+stored in a local SQLite database (`nexus-auth.db`, gitignored) created
+automatically on first use — no external service and no secret key required.
+
+- **Backend** — `src/app/api/auth/*` route handlers (`register`, `login`,
+  `logout`, `me`) backed by `better-sqlite3` (`src/lib/auth/db.ts`). Passwords
+  are salted SHA-256 hashes; sessions are opaque tokens in an `HttpOnly` cookie.
+- **Guard** — the `(protected)` route group wraps `/workspace` and `/network`
+  without changing their URLs. `RequireAuth` hydrates the session and redirects
+  signed-out visitors to `/login?next=…`, returning them to where they were
+  headed after they sign in.
+- **UI** — `/login` offers sign-in and registration (`src/app/login/page.tsx`),
+  and a shared `SignOutButton` sits in the workspace top bar and every network
+  mode banner.
+
+Set `AUTH_DB_PATH` to relocate the database if you don't want it in the project
+root.
+
 ## Stack
 
 Next.js 14 (App Router) · TypeScript · Tailwind · MapLibre GL · Recharts ·

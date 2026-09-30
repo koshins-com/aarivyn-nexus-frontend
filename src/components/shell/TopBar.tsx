@@ -5,6 +5,7 @@ import { Activity, RotateCcw } from "lucide-react";
 import { API_URL, describeError } from "@/lib/api/client";
 import { getSystemStatus } from "@/lib/api/nexus";
 import { useNexus } from "@/lib/store";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 import { Button } from "@/components/ui/primitives";
 import type { SystemStatus } from "@/lib/types";
 import { cn } from "@/lib/format";
@@ -62,6 +63,7 @@ export function TopBar() {
 
       <div className="ml-auto flex items-center gap-2">
         <StatusPill online={online} status={status} error={err} />
+        <SignOutButton />
         <Button
           size="sm"
           variant="ghost"

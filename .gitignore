@@ -6,3 +6,8 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# local SQLite auth database
+nexus-auth.db
+nexus-auth.db-shm
+nexus-auth.db-wal

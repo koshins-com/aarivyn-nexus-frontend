@@ -5,6 +5,9 @@
 @layer base {
   :root {
     color-scheme: dark;
+    --font-display: "Space Grotesk", "Avenir Next", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "IBM Plex Sans", "Avenir Next", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
   }
 
   html,

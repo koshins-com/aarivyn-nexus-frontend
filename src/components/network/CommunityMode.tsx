@@ -16,6 +16,7 @@ import {
 import type { BasemapId } from "./community/basemaps";
 import type { ReportFeature } from "./community/CommunityMap";
 import { DetailSheet } from "./community/DetailSheet";
+import { DatasetExplorer } from "./community/DatasetExplorer";
 import {
   pointInPolygon,
   reportsInArea,
@@ -80,7 +81,7 @@ const FALLBACK_CATEGORIES = [
   "Other",
 ];
 
-type Tab = "report" | "planned" | "feedback";
+type Tab = "report" | "planned" | "datasets" | "feedback";
 
 export function CommunityMode() {
   const [tab, setTab] = React.useState<Tab>("report");
@@ -224,6 +225,7 @@ export function CommunityMode() {
           [
             ["report", "Report a problem"],
             ["planned", "What's planned here"],
+            ["datasets", "Explore datasets"],
             ["feedback", "Give feedback"],
           ] as [Tab, string][]
         ).map(([id, label]) => (
@@ -329,6 +331,8 @@ export function CommunityMode() {
               onOpenReport={setDetailId}
             />
           )}
+
+          {tab === "datasets" && <DatasetExplorer aoi={aoi} />}
 
           {tab === "feedback" && (
             <FeedbackTab reports={intel.reports} preset={feedbackTarget} />
